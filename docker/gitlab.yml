@@ -1,0 +1,26 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    platform: linux/amd64
+    container_name: gitlab
+    hostname: localhost
+    restart: always
+    ports:
+      - "443:443"
+      - "8080:80"
+      - "22:22"
+    volumes:
+      - ~/gitlab/config:/etc/gitlab
+      - ~/gitlab/logs:/var/log/gitlab
+      - ~/gitlab/data:/var/opt/gitlab
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    container_name: gitlab-runner
+    restart: always
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - gitlab-runner-config:/etc/gitlab-runner
+
+volumes:
+  gitlab-runner-config:

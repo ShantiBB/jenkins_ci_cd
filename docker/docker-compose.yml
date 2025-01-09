@@ -1,0 +1,28 @@
+services:
+  backend:
+    container_name: backend
+    build: ../
+    ports:
+      - "8000:8000"
+    env_file: ../.env
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES__USER}
+      - POSTGRES_PASSWORD=${POSTGRES__PASSWORD}
+      - POSTGRES_HOST="${POSTGRES__HOST}"
+      - POSTGRES_PORT=${POSTGRES__PORT}
+      - POSTGRES_DB=${POSTGRES__DB_NAME}
+    env_file:
+      - ../.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
