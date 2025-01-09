@@ -1,0 +1,12 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  tags: [shell]
+  script:
+    - sudo bash -c "docker compose -f "$DOCKER_COMPOSE_PATH" down"
+    - cd ansible
+    - sudo bash -c "ansible-playbook playbook.yml"
+  only:
+    - main
