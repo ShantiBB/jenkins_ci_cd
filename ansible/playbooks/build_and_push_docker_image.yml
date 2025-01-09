@@ -9,6 +9,11 @@
   tasks:
     - include_tasks: tasks/login_to_docker.yml
 
+    - name: Down Docker compose
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_path }}"
+        state: absent
+
     - name: Remove
       community.docker.docker_image_remove:
         name: "{{ docker_username }}/{{ docker_image }}"
