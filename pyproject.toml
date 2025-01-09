@@ -1,0 +1,62 @@
+[tool.poetry]
+name = "wallet-fast-api"
+version = "0.1.0"
+description = ""
+authors = ["Sergey Golobokov <sergeygolobokov@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["all"], version = "^0.115.6"}
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.36"}
+asyncpg = "^0.30.0"
+alembic = "^1.14.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+ruff = "^0.8.4"
+black = "^24.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+    exclude = [
+        ".git",
+        ".mypy_cache",
+        ".pyenv",
+        ".pytest_cache",
+        ".pytype",
+        ".ruff_cache",
+        ".svn",
+        ".tox",
+        ".venv",
+        ".vscode",
+        "__pypackages__",
+        "_build",
+        "buck-out",
+        "build",
+        "dist",
+        "node_modules",
+        "site-packages",
+        "venv",
+        "__init__.py",
+    ]
+    line-length = 79
+    indent-width = 4
+    target-version = "py312"
+        
+    [tool.ruff.lint]
+        select = ['E', 'F', 'W', 'A', 'PLC', 'PLE', 'PLW', 'I', "COM"]
+        ignore = ["F401", "A002"]
+        fixable = ["ALL"]
+        dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+            
+    [tool.ruff.format]
+        quote-style = "double"
+        indent-style = "space"
+        skip-magic-trailing-comma = false
+        line-ending = "auto"
+
