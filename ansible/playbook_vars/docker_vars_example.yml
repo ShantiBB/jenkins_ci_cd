@@ -1,0 +1,15 @@
+# hosts for playbooks
+build_and_push_docker_image_playbook_host : "host"
+pull_and_up_docker_compose_playbook_host  : "host"
+
+# docker login
+docker_username : "username"
+docker_password : "password"
+
+# docker image info
+docker_image          : "image"
+docker_image_platform : "image"
+
+#paths
+dockerfile_path : "path"
+project_path    : "path"

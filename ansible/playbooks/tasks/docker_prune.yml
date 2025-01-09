@@ -1,0 +1,8 @@
+- name: Docker prune
+  community.docker.docker_prune:
+    containers: true
+    images: true
+    networks: true
+    volumes: true
+  retries: "{{ retries_count }}"
+  delay: "{{ delay_time }}"

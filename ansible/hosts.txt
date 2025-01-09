@@ -1,0 +1,2 @@
+[STAGE_SERVERS_WEB]
+ubuntu1 ansible_host=45.145.65.231

@@ -1,0 +1,25 @@
+- name: Restart docker compose images
+  hosts: "{{ pull_and_up_docker_compose_playbook_host }}"
+  become: yes
+
+  vars_files:
+    - /root/wallet_project/ansible/playbook_vars/docker_vars.yml
+    - /root/wallet_project/ansible/playbook_vars/retry_task_vars.yml
+
+  tasks:
+    - include_tasks: tasks/login_to_docker.yml
+
+    - name: Pull
+      community.docker.docker_compose_v2_pull:
+        project_src: "{{ project_path }}"
+      retries: "{{ retries_count }}"
+      delay: "{{ delay_time }}"
+
+    - name: Up
+      community.docker.docker_compose_v2:
+        project_src: "{{ project_path }}"
+      register: output
+      retries: "{{ retries_count }}"
+      delay: "{{ delay_time }}"
+
+    - include_tasks: tasks/docker_prune.yml

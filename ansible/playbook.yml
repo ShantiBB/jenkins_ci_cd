@@ -1,0 +1,5 @@
+- name: main playbook project
+  hosts: localhost
+
+- ansible.builtin.import_playbook: playbooks/build_and_push_docker_image.yml
+- ansible.builtin.import_playbook: playbooks/pull_and_up_docker_compose.yml

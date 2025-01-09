@@ -1,0 +1,6 @@
+- name: Login to DockerHub
+  community.docker.docker_login:
+    username: "{{ docker_username }}"
+    password: "{{ docker_password }}"
+  retries: "{{ retries_count }}"
+  delay: "{{ delay_time }}"
