@@ -4,4 +4,4 @@ style_code:
 
 docker_push:
 	docker build --platform=linux/amd64 -t shantibb/backend .
-	docker push shantibb/backendd
+	docker push shantibb/backend
