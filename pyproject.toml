@@ -11,12 +11,14 @@ fastapi = {extras = ["all"], version = "^0.115.6"}
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.36"}
 asyncpg = "^0.30.0"
 alembic = "^1.14.0"
+psycopg2 = "^2.9.10"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 ruff = "^0.8.4"
 black = "^24.10.0"
+requests = "^2.32.3"
 
 [build-system]
 requires = ["poetry-core"]
