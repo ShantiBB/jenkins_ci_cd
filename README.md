@@ -40,7 +40,7 @@ cd ansible
 ansible-playbook playbook.yml
 ```
 
-Ansible playbooks:
+## Ansible playbooks:
 ```bash
 # main playbook
 - name: main playbook project
