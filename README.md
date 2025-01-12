@@ -9,7 +9,7 @@
 ```bash
 #!/bin/bash
 echo "Перенос .env файла в репозиторий"
-cp /root/wallet_project/.env /root/jenkins/workspace/deploy_to_ubuntu_remote-server
+cp src_path dest_path
 
 echo "Запуск  docker"
 sudo systemctl start docker
