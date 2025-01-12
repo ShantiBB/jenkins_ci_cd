@@ -5,8 +5,8 @@ from app.core.database.db_helper import AsyncSessionDep
 from app.wallets.dao import WalletDAO
 from app.wallets.schemas import (
     WalletCreateSchema,
+    WalletOperationSchema,
     WalletSchema,
-    WalletOperationSchema
 )
 
 router = APIRouter(
@@ -63,7 +63,7 @@ async def update_wallet(
 
 @router.delete(
     "/{wallet_id}/",
-    status_code=204
+    status_code=204,
 )
 async def delete_wallet(
     wallet_id: int,

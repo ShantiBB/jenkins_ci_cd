@@ -13,15 +13,15 @@ class PostgresSettings(BaseModel):
     def url(self):
         """Формирует путь для настройки БД"""
         return (
-            f'postgresql+asyncpg://{self.user}:{self.password}'
-            f'@{self.host}:{self.port}/{self.db_name}'
+            f"postgresql+asyncpg://{self.user}:{self.password}"
+            f"@{self.host}:{self.port}/{self.db_name}"
         )
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file='.env',
-        env_nested_delimiter = '__',
+        env_file=".env",
+        env_nested_delimiter="__",
     )
 
     postgres: PostgresSettings

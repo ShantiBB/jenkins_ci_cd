@@ -36,9 +36,7 @@ class WalletDAO(BaseModelDAO):
             balance -= amount
 
         stmt = (
-            update(cls.model)
-            .filter_by(id=wallet_id)
-            .values(balance=balance)
+            update(cls.model).filter_by(id=wallet_id).values(balance=balance)
         )
         await session.execute(stmt)
         await session.commit()

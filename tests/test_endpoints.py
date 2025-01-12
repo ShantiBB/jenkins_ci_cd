@@ -4,7 +4,7 @@ from tests.constants import (
     BASE_WALLETS_URL,
     WALLET_DATA,
     WALLET_DATA_AFTER_PUT,
-    WALLET_OPERATION_DEPOSIT_DATA
+    WALLET_OPERATION_DEPOSIT_DATA,
 )
 
 
@@ -26,7 +26,7 @@ class TestWallets:
     def test_post_wallet(cls):
         response = requests.post(
             url=cls.url,
-            json=WALLET_DATA
+            json=WALLET_DATA,
         )
         result = response.json()
 
@@ -58,7 +58,7 @@ class TestWallets:
 
         response_after_put = requests.put(
             url=cls.url_by_id,
-            json=WALLET_DATA_AFTER_PUT
+            json=WALLET_DATA_AFTER_PUT,
         )
         result_after_put = response_after_put.json()
 
@@ -73,7 +73,7 @@ class TestWallets:
         url = f"{cls.url_by_id}operation/"
         operation = requests.post(
             url=url,
-            json=WALLET_OPERATION_DEPOSIT_DATA
+            json=WALLET_OPERATION_DEPOSIT_DATA,
         )
         assert operation.status_code == 200
         assert operation.json() == "Транзакция прошла успешно!"
