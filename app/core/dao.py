@@ -31,7 +31,7 @@ class BaseModelDAO:
 
     @classmethod
     async def delete(cls, obj_id: int, session: AsyncSessionDep) -> bool:
-        stmt = delete(cls.model).filter_by(id=id)
+        stmt = delete(cls.model).filter_by(id=obj_id)
         res = await session.execute(stmt)
         await session.commit()
         return res.rowcount > 0

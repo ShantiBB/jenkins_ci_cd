@@ -14,3 +14,8 @@ class WalletUpdateSchema(WalletCreateSchema):
 
 class WalletSchema(WalletUpdateSchema):
     balance: Decimal
+
+
+class WalletOperationSchema(BaseModel):
+    operation_type: str
+    amount: Decimal

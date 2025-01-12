@@ -1,11 +1,13 @@
-from decimal import Decimal
-
 from fastapi import APIRouter
 
 from app.api.v1.validations.wallets import WalletValidation
 from app.core.database.db_helper import AsyncSessionDep
 from app.wallets.dao import WalletDAO
-from app.wallets.schemas import WalletCreateSchema, WalletSchema
+from app.wallets.schemas import (
+    WalletCreateSchema,
+    WalletSchema,
+    WalletOperationSchema
+)
 
 router = APIRouter(
     prefix="/wallets",
@@ -13,7 +15,7 @@ router = APIRouter(
 )
 
 
-@router.post("/")
+@router.post("/", status_code=201)
 async def create_wallet(
     session: AsyncSessionDep,
     data: WalletCreateSchema,
@@ -59,26 +61,31 @@ async def update_wallet(
     return "Кошелёк успешно изменён"
 
 
-@router.delete("/{wallet_id}/")
+@router.delete(
+    "/{wallet_id}/",
+    status_code=204
+)
 async def delete_wallet(
     wallet_id: int,
     session: AsyncSessionDep,
-) -> str:
+) -> None:
     res = await WalletDAO.delete(
         obj_id=wallet_id,
         session=session,
     )
     WalletValidation.validate_exist_obj(res)
-    return "Кошелёк успешно удалён"
 
 
 @router.post("/{wallet_id}/operation/")
 async def update_wallet_balance(
     wallet_id: int,
-    operation_type: str,
-    amount: Decimal,
+    data: WalletOperationSchema,
     session: AsyncSessionDep,
 ) -> str:
+    data = data.model_dump()
+    operation_type = data.get("operation_type")
+    amount = data.get("amount")
+
     balance = await WalletDAO.get_balance(
         wallet_id=wallet_id,
         session=session,
